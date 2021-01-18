@@ -2,7 +2,7 @@ set CompilerDirectory=%ProgramFiles%\FreeBASIC
 
 set MainFile=Modules\EntryPoint.bas
 set Classes=
-set Forms=Forms\InputDataDialogProc.bas
+set Forms=Forms\InputDataDialogProc.bas Forms\OutputDataDialogProc.bas
 set Modules=Modules\DisplayError.bas Modules\WinMain.bas
 set References=
 set Resources=Resources.RC
