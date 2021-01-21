@@ -233,7 +233,7 @@ set WithoutRuntimeLibraryesFlag=%~8
 	
 	set IncludeUuidObjectLibraries=-luuid
 	set IncludeGMonitorObjectLibraries=-lgmon
-	set IncludeGccObjectLibraries=-lmoldname -lgcc
+	set IncludeGccObjectLibraries=
 	set IncludeWinApiObjectLibraries=-ladvapi32 -lcomctl32 -lcomdlg32 -lcrypt32 -lgdi32 -lgdiplus -limm32 -lkernel32 -lmsimg32 -lmsvcrt -lmswsock -lole32 -loleaut32 -lshell32 -lshlwapi -luser32 -lversion -lwinmm -lwinspool -lws2_32
 	
 	set IncludeAllObjectLibraries=%IncludeWinApiObjectLibraries% %IncludeGMonitorObjectLibraries% %IncludeGccObjectLibraries%
@@ -272,7 +272,7 @@ set WithoutRuntimeLibraryesFlag=%~8
 	) else (
 		set LinkerStripFlag=-s
 	)
-	%LinkerFilePath% -m %PEFileFormat% -o %CompilerOutputFileName% -subsystem %Win32Subsystem% -e %EntryPoint% --stack 1048576,1048576 %LinkerStripFlag% -L %CompilerLibDirectoryPath% -L "." "%CompilerLibDirectoryPath:~1,-1%\fbextra.x" %AllObjectFiles% -( %IncludeAllObjectLibraries% -)
+	%LinkerFilePath% -m %PEFileFormat% -o %CompilerOutputFileName% -subsystem %Win32Subsystem% -e %EntryPoint% --stack 1048576,1048576 --gc-sections %LinkerStripFlag% -L %CompilerLibDirectoryPath% -L "." "%CompilerLibDirectoryPath:~1,-1%\fbextra.x" %AllObjectFiles% -( %IncludeAllObjectLibraries% -)
 	
 	if "%ExeTypeKind%"=="dll" (
 		%DllToolFilePath% --def %OutputDefinitionFileName% --dllname %CompilerOutputFileName% --output-lib lib%CompilerOutputFileName%.a
